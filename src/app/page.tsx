@@ -10,29 +10,33 @@ export default function Form1() {
             Array1: (e.target.array1.value),
             Array2: (e.target.array2.value)
         }
-
-        const array = data.Array1.split(", ");
-        const array2 = data.Array2.split(", ");
-        const obtainNumbers:Array<any> = new Array<any>()
         
-        for(let item of array){
-          for(let item2 of array2){
-           if (Number(item) + Number(item2) == array.length || Number(item) - Number(item2) == array.length){
-            if(item != item2 && array.includes(item2) && array2.includes(item2) && array.includes(item) && array2.includes(item)){
-              obtainNumbers.push(item)
+        if (data.Array1.trim().length === 0 || data.Array2.trim().length === 0) {
+          alert("Arrays cannot be null")
+        }else{
+          const array = data.Array1.split(", ");
+          const array2 = data.Array2.split(", ");
+          const obtainNumbers:Array<any> = new Array<any>()
+          
+          for(let item of array){
+            for(let item2 of array2){
+            if (Number(item) + Number(item2) == array.length || Number(item) - Number(item2) == array.length){
+              if(item != item2 && array.includes(item2) && array2.includes(item2) && array.includes(item) && array2.includes(item)){
+                obtainNumbers.push(item)
+              }
             }
-           }
-           if(Number(item) + Number(item2) == array2.length || Number(item) - Number(item2) == array2.length){
-            if(item != item2 && array.includes(item2) && array2.includes(item2) && array.includes(item) && array2.includes(item)){
-              obtainNumbers.push(item)
+            if(Number(item) + Number(item2) == array2.length || Number(item) - Number(item2) == array2.length){
+              if(item != item2 && array.includes(item2) && array2.includes(item2) && array.includes(item) && array2.includes(item)){
+                obtainNumbers.push(item)
+              }
             }
-           }
+            }
           }
-        }
 
-        const noDuplicated = obtainNumbers.filter((item, index) => obtainNumbers.indexOf(item) === index);
-        
-        alert(noDuplicated)
+          const noDuplicated = obtainNumbers.filter((item, index) => obtainNumbers.indexOf(item) === index);
+          
+          alert(noDuplicated)
+        }
       }
 
   return (
